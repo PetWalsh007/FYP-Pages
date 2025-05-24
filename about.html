@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About </title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+<script src="assets/js/main.js"></script>
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="system.html">Architecture</a></li>
+        <li><a href="analysis.html">Analysis</a></li>
+        <li><a href="screenshots.html">Screenshots</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>About the Project</h1>
+
+    <section class="features">
+      <h2>Industry Challenges</h2>
+      <ul>
+        <li>Limited integration with external data sources in proprietary MES systems</li>
+        <li>Expensive vendor add-ons with limited end-user customisation</li>
+        <li>Lack of built-in time series analysis and data interactivity</li>
+        <li>Manual data preprocessing for third-party tools</li>
+      </ul>
+    </section>
+
+<section class="features2">
+  <h2>Project Objectives</h2>
+  <ul>
+    <li><strong>Implementation Specific Objectives:</strong>
+      <ul>
+        <li>Build a functioning data analysis platform.</li>
+        <li>Support a modular build design.</li>
+        <li>Facilitate basic audit trailing.</li>
+        <li>Enable fast processing of large quantities of data.</li>
+        <li>Enable the use of basic and advanced time-series analysis methods.</li>
+        <li>Build an intuitive, simple front-end to allow user interactions with data endpoints but also the platform itself.</li>
+      </ul>
+    </li>
+    <li><strong>Implementation Specific Scope:</strong>
+      <ul>
+        <li>Deploy a containerised analytics platform using Proxmox.</li>
+        <li>Build support for multiple databases, SQL Server PostgreSQL using an abstraction layer.</li>
+        <li>Implement Redis caching to improve response time and reduce database load.</li>
+        <li>Include an analysis engine capable of complex and basic time-series analysis on selected datasets.</li>
+        <li>Develop a frontend using Dash to allow selection of data, time windows, and analysis methods.</li>
+        <li>Maintain modular code design with reusable Python classes to support modularity where possible.</li>
+        <li>Demonstrate compliance considerations with basic audit trails.</li>
+        <li>Focus is mostly on historical data analysis with simulated endpoints. Live data is acknowledged but not fully implemented.</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+
+
+    <section class="features">
+      <h2>Relevance to Industry 4.0</h2>
+      <p>
+        This project addresses real-world needs by providing a flexible, future-proof platform for smarter industrial analytics. 
+        Its modular design supports evolving infrastructure while improving access to time-sensitive decision-making data — a core goal of Industry 4.0.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Peter Walsh | <a href="https://github.com/PetWalsh007/FYP-2025" target="_blank">View on GitHub</a></p>
+  </footer>
+
+</body>
+</html>

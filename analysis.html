@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Analysis – Final Year Project</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+
+<body>
+<script src="assets/js/main.js"></script>
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="system.html">Architecture</a></li>
+        <li><a href="analysis.html" class="active">Analysis</a></li>
+        <li><a href="screenshots.html">Screenshots</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Analysis & Data Handling</h1>
+
+
+    <section class="features">
+  <h2>Custom Analysis & Reporting Capabilities</h2>
+  <p>
+    The platform was designed with extensibility in mind, enabling users to perform tailored analysis routines beyond built-in methods like DTW.
+    This allows for case-specific investigations, on-demand reporting, and integration of new analytical techniques over time.
+  </p>
+  <ul>
+    <li>Users can trigger different types of analysis by selecting options in the frontend and submitting configuration parameters</li>
+    <li>Each analysis module returns structured results (e.g. JSON, DataFrame) that can be rendered or downloaded</li>
+    <li>Results are sent to Redis and logged to PostgreSQL for traceability or re-analysis</li>
+    <li>Modular backend structure allows future support for external scripts written in R, Bash, or compiled C++</li>
+    <li>Supports summary statistics, batch comparisons, and configurable time windows</li>
+
+  </ul>
+</section>
+    <section class="features">
+<h2>Time Series Analysis</h2>
+<p>
+  A core part of this project involved building a system capable of performing computationally intensive operations,
+  with a focus on dynamic and comparative time series analysis. One of the primary techniques implemented was 
+  <strong>Dynamic Time Warping (DTW)</strong>, which was developed both as a custom script and using a supporting Python library.
+</p>
+      <ul>
+        <li>DTW used to compare process parameters between time ranges or batches</li>
+        <li>Includes a traceback method to determine alignment paths through the cost matrix</li>
+        <li>Normalisation and min/max scaling applied to enhance comparison accuracy</li>
+      </ul>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <img src="assets/img/Figure_1.png" 
+       alt="DTW Comparison and Cost Matrix" 
+      style="max-width:100%; border: 1px solid #ccc; margin: 1rem 0;">
+  <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem;">
+    Visual output of DTW analysis showing baseline vs post-change signal (top) and optimal path through the cost matrix (bottom).
+  </p>
+  <div style="text-align: center; margin-top: 2rem;">
+  <img src="assets/img/dtw.png" 
+       alt="DTW Cost Matrix Calculation Formula" 
+       style="width: 100%; max-width: 600px; cursor: zoom-in; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem;">
+    Formula showcased in Volume One used to compute each cell of the DTW cost matrix. The path is constructed based on the minimum cost from match, insertion, or deletion operations.
+  </p>
+</div>
+
+</div>
+
+
+
+    <section class="features">
+      <h2>Redis Caching Strategy</h2>
+      <p>
+        Redis was implemented as a high-speed in-memory cache to support both raw and processed data retrieval.
+        This caching significantly reduced load on source databases and sped up repeat analysis operations. The cache can allow for quick access to frequently queried data without hitting the database each time.
+      </p>
+      <ul>
+        <li>Custom TTL used to retain data as required</li>
+        <li>Separate keys tracked for raw queries and results for logging purposes</li>
+        <li>Memory monitoring via a Bash script using <code>redis-cli info memory</code></li>
+        <li>Redis Insight used to inspect and debug cache state</li>
+      </ul>
+    </section>
+
+<section class="features">
+  <h2>Data Dictionary & Preprocessing</h2>
+  <p>
+    A key part of backend analysis was the development of a custom <strong>data dictionary framework</strong> to classify and prepare incoming data.
+  </p>
+  <ul>
+    <li>Incoming data parsed into structured <code>pandas</code> DataFrames</li>
+    <li>Each column classified as datetime, numeric, categorical, etc.</li>
+    <li>Regex logic applied to normalise datetime precision</li>
+    <li>Missing data handled using safe defaults and warnings</li>
+  </ul>
+
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <img src="assets/img/data-dictionary-flow.png" 
+         alt="Custom Data Dictionary Classification Flow" 
+         style="max-width: 65%; border: 1px solid #ccc; border-radius: 6px; box-shadow: 0 0 12px rgba(0,0,0,0.1);">
+    <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem;">
+      Custom classification flow used to parse incoming data into structured formats (datetime, numeric, categorical)
+    </p>
+  </div>
+
+  <p style="margin-top: 1rem;">
+    This standardised dictionary structure ensures that downstream analysis functions — whether written in Python or other environments 
+    such as Bash scripts, C++, or R — can rely on consistent, typed input formats. This design supports long-term modularity 
+    and allows the platform to evolve beyond Python-based processing if needed.
+  </p>
+</section>
+
+
+    <section class="features">
+      <h2>Analysis Engine & Modularity</h2>
+      <p>
+        All analysis scripts were designed to accept structured data and return modified DataFrames. 
+        This modular approach allows routines to be written in Python now, and later extended in other languages such as Bash or C++.
+      </p>
+      <ul>
+        <li>Each analysis script imports data, runs a defined function, and returns JSON-ready results</li>
+        <li>Statistical methods include rolling averages, range summaries, and time series comparisons</li>
+        <li>DTW-based comparisons are triggered by user inputs from the frontend</li>
+      </ul>
+    </section>
+
+    <section class="features">
+      <h2>Error Handling</h2>
+      <p>
+        Robust error handling was implemented across the backend, especially in the abstraction and Redis layers.
+      </p>
+      <ul>
+        <li>All Redis and HTTP interactions wrapped in <code>try/except</code> blocks</li>
+        <li>Errors logged with timestamps and status codes</li>
+        <li>Custom error messages passed to frontend to inform users</li>
+        <li>Validation checks used to prevent malformed queries or missing keys</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Peter Walsh | <a href="https://github.com/PetWalsh007/FYP-2025" target="_blank">View on GitHub</a></p>
+  </footer>
+
+</body>
+</html>

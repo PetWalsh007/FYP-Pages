@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>System Architecture – Final Year Project</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+<script src="assets/js/main.js"></script>
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="system.html" class="active">Architecture</a></li>
+        <li><a href="analysis.html">Analysis</a></li>
+        <li><a href="screenshots.html">Screenshots</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>System Architecture</h1>
+
+    <section class="features">
+      <h2>Overview</h2>
+      <p>
+        This system was designed and deployed using a modular containerised architecture hosted on a Dell OptiPlex 3050 Micro running Proxmox VE. 
+        The platform consists of multiple Linux containers (LXC), each handling a specific part of the system including data access, analysis, frontend, and routing. 
+        This structure supports independent development, scalability, and reliability across services.
+      </p>
+    </section>
+
+    <section class="features">
+      <h2>Container Boot Order</h2>
+      <ul>
+        <li>1️⃣ PostgreSQL – Internal configuration DB and audit log storage</li>
+        <li>2️⃣ Abstraction Layer – ODBC/REST bridging between external databases and backend</li>
+        <li>3️⃣ Backend – Handles analysis engine and Redis caching</li>
+        <li>4️⃣ Frontend – Dash interface for data selection and result display</li>
+        <li>5️⃣ NGINX Proxy Manager – Routes user requests internally to each service</li>
+      </ul>
+    </section>
+
+    <section class="features">
+      <h2>Software Stack</h2>
+      <ul>
+        <li><strong>Proxmox VE:</strong> Hypervisor for managing LXC containers</li>
+        <li><strong>Python:</strong> Used across backend, frontend, and abstraction layer</li>
+        <li><strong>Redis:</strong> In-memory caching layer to reduce repeated queries</li>
+        <li><strong>PostgreSQL:</strong> Internal configuration and audit logging database</li>
+        <li><strong>FastAPI:</strong> Backend REST API for routing and analysis endpoints</li>
+        <li><strong>Dash:</strong> Web-based interface for data interaction and visualisation</li>
+        <li><strong>WSGI &amp; ASGI:</strong> Application servers for running Python web apps (Gunicorn, Uvicorn)</li>
+        <li><strong>NGINX Proxy Manager:</strong> Reverse proxy for request routing and domain binding</li>
+      </ul>
+    </section>
+
+    <section class="features">
+      <h2>Deployment Environment</h2>
+      <p>
+        The project was developed and deployed on a local Dell OptiPlex 3050 Micro, configured with 8 CPU threads, 16GB RAM, and Ubuntu-based containers. 
+        Each container includes a Python virtual environment (venv) and is managed via systemd service scripts to ensure clean startup, shutdown, and isolation. 
+      </p>
+    </section>
+
+    <section class="features">
+      <h2>System Diagram</h2>
+      <p>
+        Below is a high-level diagram outlining how each container communicates with one another through internal HTTP and shared resources.
+      </p>
+        <div style="text-align: center; margin-top: 1rem;">
+    <img src="assets/img/architecture-diagram.png" 
+         alt="System Architecture Diagram" 
+         style="max-width: 100%; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+  </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Peter Walsh | <a href="https://github.com/PetWalsh007/FYP-2025" target="_blank">View on GitHub</a></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
