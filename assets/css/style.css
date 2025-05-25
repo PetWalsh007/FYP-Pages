@@ -187,8 +187,8 @@ main.container.loaded {
 }
 
 .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 107%;
+    max-height: 107%;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
