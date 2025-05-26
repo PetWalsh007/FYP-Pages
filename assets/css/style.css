@@ -64,6 +64,12 @@ header {
   transition: color 0.3s ease;
 }
 
+.nav-links a.active {
+  border-bottom: 2px solid #38bdf8;
+  padding-bottom: 0.2rem;
+}
+
+
 .nav-links a:hover {
   color: #38bdf8;
 }
