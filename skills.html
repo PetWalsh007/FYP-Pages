@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Key Skills – PRISM</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+
+<body>
+<script src="assets/js/main.js"></script>
+
+<header>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="system.html">Architecture</a></li>
+      <li><a href="analysis.html">Analysis</a></li>
+      <li><a href="skills.html" class="active">Key Skills</a></li>
+      <li><a href="technical.html">Extracts</a></li>
+      <li><a href="screenshots.html">Screenshots</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>Key Skills</h1>
+
+  <section class="features">
+    <h2>Systems & Architecture</h2>
+    <ul>
+      <li>Designed and deployed a multi-service platform using Proxmox VE and LXC containers</li>
+      <li>Service separation: abstraction layer, backend, frontend, cache, internal DB, reverse proxy</li>
+      <li>Container boot order planning and service dependency handling</li>
+      <li>Internal HTTP routing and reverse proxy setup for clean access patterns</li>
+      <li>Basic operational setup: service startup scripts, clean restarts, and isolation between components</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>Backend Development & APIs</h2>
+    <ul>
+      <li>Built REST endpoints using FastAPI for query routing and analysis execution</li>
+      <li>Structured request/response handling for passing config, ranges, and analysis settings</li>
+      <li>Input validation and defensive error handling to avoid bad requests breaking services</li>
+      <li>Logging of key actions (requests, failures, cache events) for traceability</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>Data Engineering & Database Integration</h2>
+    <ul>
+      <li>Dynamic database access via a custom abstraction layer (ODBC + REST patterns)</li>
+      <li>Worked with SQL Server and PostgreSQL connection handling and query execution</li>
+      <li>Designed a consistent data flow to return query results as pandas DataFrames / JSON payloads</li>
+      <li>Internal PostgreSQL used for configuration storage and audit-style logging</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>Caching & Performance</h2>
+    <ul>
+      <li>Implemented Redis caching for raw query reuse and repeat analysis speed-up</li>
+      <li>Key-based retrieval for loading historical queries and processed outputs</li>
+      <li>TTL handling and cache inspection for debugging and memory awareness</li>
+      <li>Reduced repeated load on external databases by avoiding duplicate queries</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>Time Series Analysis</h2>
+    <ul>
+      <li>Implemented Dynamic Time Warping (DTW) for comparing time ranges or batch signals</li>
+      <li>Normalisation and scaling approaches used to support fair comparisons</li>
+      <li>Traceback path logic through the DTW cost matrix for alignment interpretation</li>
+      <li>Built the analysis pipeline to accept typed inputs and return structured results</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>Data Handling & Preprocessing</h2>
+    <ul>
+      <li>Built a data dictionary approach to classify incoming columns (datetime, numeric, categorical)</li>
+      <li>Datetime parsing and cleanup for mixed precision timestamps</li>
+      <li>Missing data handling using safe defaults, warnings, and guard checks</li>
+      <li>Standardised typed outputs so downstream analysis modules can assume stable inputs</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>Frontend Integration (Engineering-Focused UI)</h2>
+    <ul>
+      <li>Dash frontend used to select databases, tables, time windows, and analysis methods</li>
+      <li>Frontend-to-backend workflow design: query → cache → process → render → export</li>
+      <li>CSV export support for processed results and repeatable analysis outcomes</li>
+      <li>State handling for retrieving prior Redis keys and restoring previous work</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>Engineering Practices</h2>
+    <ul>
+      <li>Modular Python structure: reusable classes, separated responsibilities, clean interfaces</li>
+      <li>Practical debugging across distributed services (frontend, backend, Redis, DB)</li>
+      <li>Worked with realistic dataset sizes (tens to hundreds of thousands of rows)</li>
+      <li>Built with audit and compliance thinking in mind (logging, traceability, internal config DB)</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>What This Shows</h2>
+    <p>
+      This project shows end-to-end capability: from deploying services and wiring them together,
+      through database access and caching, to time-series analysis and a working web UI that can be used to run
+      repeatable investigations on industrial-style data.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Peter Walsh | <a href="https://github.com/PetWalsh007/FYP-2025" target="_blank">View on GitHub</a></p>
+</footer>
+
+</body>
+</html>
